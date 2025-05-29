@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -61,10 +63,16 @@ const Navbar = () => {
 
           {/* Auth Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
-            <button className="text-gray-600 hover:text-gray-900 px-4 py-2 text-sm font-medium transition-colors">
+            <button
+              onClick={() => navigate("/auth/login")}
+              className="text-gray-600 hover:text-gray-900 px-4 py-2 text-sm font-medium transition-colors"
+            >
               Login
             </button>
-            <button className="bg-black text-white px-6 py-2 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors">
+            <button
+              onClick={() => navigate("/auth/signup")}
+              className="bg-black text-white px-6 py-2 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors"
+            >
               Sign up
             </button>
           </div>
@@ -123,10 +131,22 @@ const Navbar = () => {
               </button>
             </div>
             <div className="space-y-4 pt-6 border-t border-gray-200">
-              <button className="block w-full text-left text-gray-600 hover:text-gray-900 py-2 text-sm font-medium transition-colors">
+              <button
+                onClick={() => {
+                  navigate("/auth/login");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="block w-full text-left text-gray-600 hover:text-gray-900 py-2 text-sm font-medium transition-colors"
+              >
                 Login
               </button>
-              <button className="block w-full bg-black text-white py-2 text-sm font-medium hover:bg-gray-800 transition-colors">
+              <button
+                onClick={() => {
+                  navigate("/auth/signup");
+                  setIsMobileMenuOpen(false);
+                }}
+                className="block w-full bg-black text-white py-2 text-sm font-medium hover:bg-gray-800 transition-colors"
+              >
                 Sign up
               </button>
             </div>
