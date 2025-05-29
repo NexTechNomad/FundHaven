@@ -6,7 +6,6 @@ import { useWaitlistSubmission } from "@/hooks/useWaitlistSubmission";
 const Waitlist = () => {
   const [email, setEmail] = useState("");
   const [showPopup, setShowPopup] = useState(false);
-
   const { isSubmitting, submitStatus, errorMessage, submitEmail, resetStatus } =
     useWaitlistSubmission();
 
