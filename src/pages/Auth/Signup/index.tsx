@@ -15,6 +15,7 @@ const SignupPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle signup logic here
+    navigate('/onboarding');
   };
 
   return (

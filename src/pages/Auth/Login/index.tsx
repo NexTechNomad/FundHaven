@@ -12,6 +12,7 @@ const LoginPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle login logic here
+    navigate("/auth/otp");
   };
 
   return (
@@ -117,12 +118,12 @@ const LoginPage = () => {
               </div>
 
               <div className="text-sm">
-                <a
-                  href="#"
+                <button
+                  onClick={() => navigate("/auth/forgot-password")}
                   className="font-medium text-main-blue hover:text-main-blue-500"
                 >
                   Forgot your password?
-                </a>
+                </button>
               </div>
             </div>
 
