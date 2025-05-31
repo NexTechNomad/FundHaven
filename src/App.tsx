@@ -5,7 +5,7 @@ import ForgotPasswordPage from "@/pages/Auth/Login/ForgotPassword";
 import OTPPage from "@/pages/Auth/Login/OTP";
 import SignupPage from "@/pages/Auth/Signup";
 import OnboardingPage from "@/pages/Onboarding";
-// import DashboardPage from "@/pages/Dashboard";
+import DashboardPage from "@/pages/Dashboard";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         <Route path="/onboarding" element={<OnboardingPage />} />
 
         {/* DASHBOARD ROUTES */}
-        {/* <Route path="/dashboard" element={<DashboardPage />} /> */}
+        <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>
     </Router>
   );
