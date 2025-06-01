@@ -3,14 +3,19 @@ import { Search, Bell } from "lucide-react";
 interface HeaderProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+  title?: string;
 }
 
-const Header = ({ searchQuery, setSearchQuery }: HeaderProps) => {
+const Header = ({
+  searchQuery,
+  setSearchQuery,
+  title = "Overview",
+}: HeaderProps) => {
   return (
     <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between mb-6 lg:mb-8">
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
-          Overview
+          {title}
         </h1>
       </div>
 

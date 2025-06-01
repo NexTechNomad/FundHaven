@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu } from "lucide-react";
 import Sidebar from "@/components/sidebar";
-import Header from "./Header";
+import Header from "@/components/header";
 import WelcomeSection from "./WelcomeSection";
 import BalanceCards from "./BalanceCards";
 import TransactionList, { Transaction } from "./TransactionList";
@@ -81,7 +81,11 @@ const Dashboard = () => {
             <Menu className="w-6 h-6" />
           </button>
 
-          <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+          <Header
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            title="Overview"
+          />
           <WelcomeSection />
           <BalanceCards
             showWalletBalance={showWalletBalance}

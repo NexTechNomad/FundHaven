@@ -1,11 +1,13 @@
 import {
-  Grid,
-  CreditCard,
+  LayoutDashboard,
+  Wallet,
   ArrowLeftRight,
+  ShoppingBag,
   Settings,
   LogOut,
   X,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -13,6 +15,13 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Add logout logic here
+    navigate("/auth/login");
+  };
+
   return (
     <>
       {/* Mobile Overlay */}
@@ -38,7 +47,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         </button>
 
         {/* Logo */}
-        <div className="mb-16 mt-32 lg:mb-8 lg:mt-0 w-full px-4 flex justify-center">
+        <div
+          onClick={() => navigate("/")}
+          className="mb-16 mt-32 lg:mb-8 lg:mt-0 w-full px-4 flex justify-center cursor-pointer"
+        >
           <div className="w-12 h-12 bg-white text-black rounded-lg flex items-center justify-center font-bold text-lg">
             FH
           </div>
@@ -48,23 +60,32 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <nav className="flex-1 w-full pt-8 lg:pt-0">
           <ul className="space-y-6 px-4 flex flex-col items-center lg:items-center">
             <li className="w-full lg:w-auto">
-              <div className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white bg-white/10 rounded-xl transition-colors pl-4 lg:pl-0">
-                <Grid className="w-6 h-6" />
+              <div
+                onClick={() => navigate("/dashboard")}
+                className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white bg-white/10 rounded-xl transition-colors pl-4 lg:pl-0 cursor-pointer"
+              >
+                <LayoutDashboard className="w-6 h-6" />
                 <span className="ml-3 lg:hidden text-center flex-1 mr-7">
-                  Dashboard
+                  Overview
                 </span>
               </div>
             </li>
             <li className="w-full lg:w-auto">
-              <div className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer pl-4 lg:pl-0">
-                <CreditCard className="w-6 h-6" />
+              <div
+                onClick={() => navigate("/wallet")}
+                className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer pl-4 lg:pl-0"
+              >
+                <Wallet className="w-6 h-6" />
                 <span className="ml-3 lg:hidden text-center flex-1 mr-7">
-                  Cards
+                  Wallet
                 </span>
               </div>
             </li>
             <li className="w-full lg:w-auto">
-              <div className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer pl-4 lg:pl-0">
+              <div
+                onClick={() => navigate("/transactions")}
+                className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer pl-4 lg:pl-0"
+              >
                 <ArrowLeftRight className="w-6 h-6" />
                 <span className="ml-3 lg:hidden text-center flex-1 mr-7">
                   Transactions
@@ -72,7 +93,21 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </div>
             </li>
             <li className="w-full lg:w-auto">
-              <div className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer pl-4 lg:pl-0">
+              <div
+                onClick={() => navigate("/orders")}
+                className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer pl-4 lg:pl-0"
+              >
+                <ShoppingBag className="w-6 h-6" />
+                <span className="ml-3 lg:hidden text-center flex-1 mr-7">
+                  Orders
+                </span>
+              </div>
+            </li>
+            <li className="w-full lg:w-auto">
+              <div
+                onClick={() => navigate("/settings")}
+                className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer pl-4 lg:pl-0"
+              >
                 <Settings className="w-6 h-6" />
                 <span className="ml-3 lg:hidden text-center flex-1 mr-7">
                   Settings
@@ -83,7 +118,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         </nav>
 
         {/* Logout Button */}
-        <button className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors mx-4 mb-4 pl-4 lg:pl-0">
+        <button
+          onClick={handleLogout}
+          className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors mx-4 mb-4 pl-4 lg:pl-0"
+        >
           <LogOut className="w-6 h-6" />
           <span className="ml-3 lg:hidden text-center flex-1 mr-7">Logout</span>
         </button>
