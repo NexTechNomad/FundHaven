@@ -6,7 +6,7 @@ import OTPPage from "@/pages/Auth/Login/OTP";
 import SignupPage from "@/pages/Auth/Signup";
 import OnboardingPage from "@/pages/Onboarding";
 import DashboardPage from "@/pages/Dashboard";
-import OrdersPage from "@/pages/Orders";
+import OrdersPage from "@/pages/Orders/OrdersOverview";
 
 function App() {
   return (

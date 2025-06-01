@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { Plus, ArrowUp, ArrowDown } from "lucide-react";
+import Modal from "@/components/modal";
+import CreateOrderForm from "@/pages/Orders/CreateOrderForm";
 
 const WelcomeSection = () => {
+  const [isCreateOrderModalOpen, setIsCreateOrderModalOpen] = useState(false);
+
   return (
     <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between mb-6 lg:mb-8">
       <div>
@@ -11,7 +16,10 @@ const WelcomeSection = () => {
       </div>
 
       <div className="flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:space-x-3">
-        <button className="flex items-center justify-center gap-2 px-4 py-2.5 text-main-blue border border-blue-200 rounded-lg transition-colors text-sm hover:border-blue-300">
+        <button
+          onClick={() => setIsCreateOrderModalOpen(true)}
+          className="flex items-center justify-center gap-2 px-4 py-2.5 text-main-blue border border-blue-200 rounded-lg transition-colors text-sm hover:border-blue-300"
+        >
           <Plus className="w-4 h-4" />
           Create Order
         </button>
@@ -26,6 +34,14 @@ const WelcomeSection = () => {
           Withdraw
         </button>
       </div>
+
+      <Modal
+        isOpen={isCreateOrderModalOpen}
+        onClose={() => setIsCreateOrderModalOpen(false)}
+        title="Create order"
+      >
+        <CreateOrderForm />
+      </Modal>
     </div>
   );
 };

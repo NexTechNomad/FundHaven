@@ -59,61 +59,36 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         {/* Navigation Links */}
         <nav className="flex-1 w-full pt-8 lg:pt-0">
           <ul className="space-y-6 px-4 flex flex-col items-center lg:items-center">
-            <li className="w-full lg:w-auto">
-              <div
-                onClick={() => navigate("/dashboard")}
-                className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white bg-white/10 rounded-xl transition-colors pl-4 lg:pl-0 cursor-pointer"
-              >
-                <LayoutDashboard className="w-6 h-6" />
-                <span className="ml-3 lg:hidden text-center flex-1 mr-7">
-                  Overview
-                </span>
-              </div>
-            </li>
-            <li className="w-full lg:w-auto">
-              <div
-                onClick={() => navigate("/wallet")}
-                className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer pl-4 lg:pl-0"
-              >
-                <Wallet className="w-6 h-6" />
-                <span className="ml-3 lg:hidden text-center flex-1 mr-7">
-                  Wallet
-                </span>
-              </div>
-            </li>
-            <li className="w-full lg:w-auto">
-              <div
-                onClick={() => navigate("/transactions")}
-                className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer pl-4 lg:pl-0"
-              >
-                <ArrowLeftRight className="w-6 h-6" />
-                <span className="ml-3 lg:hidden text-center flex-1 mr-7">
-                  Transactions
-                </span>
-              </div>
-            </li>
-            <li className="w-full lg:w-auto">
-              <div
-                onClick={() => navigate("/orders")}
-                className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer pl-4 lg:pl-0"
-              >
-                <ShoppingBag className="w-6 h-6" />
-                <span className="ml-3 lg:hidden text-center flex-1 mr-7">
-                  Orders
-                </span>
-              </div>
-            </li>
-            <li className="w-full lg:w-auto">
-              <div
-                onClick={() => navigate("/settings")}
-                className="flex items-center lg:justify-center w-full lg:w-12 h-12 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer pl-4 lg:pl-0"
-              >
-                <Settings className="w-6 h-6" />
-                <span className="ml-3 lg:hidden text-center flex-1 mr-7">
-                  Settings
-                </span>
-              </div>
-            </li>
+            {[
+              { path: "/dashboard", icon: LayoutDashboard, label: "Overview" },
+              { path: "/wallet", icon: Wallet, label: "Wallet" },
+              {
+                path: "/transactions",
+                icon: ArrowLeftRight,
+                label: "Transactions",
+              },
+              { path: "/orders", icon: ShoppingBag, label: "Orders" },
+              { path: "/settings", icon: Settings, label: "Settings" },
+            ].map(({ path, icon: Icon, label }) => {
+              const isActive = location.pathname === path;
+              return (
+                <li key={path} className="w-full lg:w-auto">
+                  <div
+                    onClick={() => navigate(path)}
+                    className={`flex items-center lg:justify-center w-full lg:w-12 h-12 rounded-xl transition-colors pl-4 lg:pl-0 cursor-pointer ${
+                      isActive
+                        ? "text-white bg-white/10"
+                        : "text-white/60 hover:text-white hover:bg-white/10"
+                    }`}
+                  >
+                    <Icon className="w-6 h-6" />
+                    <span className="ml-3 lg:hidden text-center flex-1 mr-7">
+                      {label}
+                    </span>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
